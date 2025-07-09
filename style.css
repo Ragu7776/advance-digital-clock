@@ -1,0 +1,479 @@
+/* CSS Variables for Theming */
+:root {
+    /* Light Mode Defaults */
+    --body-bg: #f4f4f4;
+    --main-container-bg: #ffffff;
+    --main-container-border: #007bff;
+    --text-color: #333;
+    --header-color: #0056b3;
+    --clock-time-color: #007bff;
+    --clock-date-color: #666;
+    --clock-day-color: #888;
+    --stopwatch-bg: #e9ecef;
+    --stopwatch-display-color: #dc3545;
+    --stopwatch-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    --lap-item-bg: #f8f9fa;
+    --lap-item-border: #dee2e6;
+    --alarm-bg: #e9ecef;
+    --alarm-border: #ced4da;
+    --input-bg: #fff;
+    --input-border: #ced4da;
+    --input-color: #495057;
+    --button-text-color: #fff;
+
+    /* Countdown specific colors */
+    --countdown-bg: #e0e0e0;
+    --countdown-display-color: #28a745; /* Green for countdown */
+
+    /* Button specific colors (can be themed too if desired) */
+    --btn-start-bg: #28a745;
+    --btn-pause-bg: #ffc107;
+    --btn-reset-bg: #dc3545;
+    --btn-lap-bg: #17a2b8;
+    --btn-alarm-set-bg: #6f42c1;
+    --btn-alarm-clear-bg: #6c757d;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --body-bg: #1a1a2e;
+    --main-container-bg: #16213e;
+    --main-container-border: #0f3460;
+    --text-color: #e0e0e0;
+    --header-color: #0a1128;
+    --clock-time-color: #00bfff;
+    --clock-date-color: #a0a0a0;
+    --clock-day-color: #c0c0c0;
+    --stopwatch-bg: #0f3460;
+    --stopwatch-display-color: #ff8c00;
+    --stopwatch-shadow: inset 0 0 15px rgba(0,0,0,0.7);
+    --lap-item-bg: #1a2a4b;
+    --lap-item-border: #2c4c7c;
+    --alarm-bg: #0f3460;
+    --alarm-border: #2c4c7c;
+    --input-bg: #0f3460;
+    --input-border: #2c4c7c;
+    --input-color: #e0e0e0;
+    --button-text-color: #fff;
+
+    /* Countdown specific colors for dark mode */
+    --countdown-bg: #0d2138;
+    --countdown-display-color: #4CAF50; /* Slightly brighter green for dark mode */
+}
+
+/* General Body & Main Container Styles */
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: auto; /* Allow overflow to prevent content cut-off */
+    padding: 20px 0; /* Add vertical padding for overall content */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 900px;
+    width: 90%;
+    padding: 30px;
+    background-color: var(--main-container-bg);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 3px solid var(--main-container-border);
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h2 {
+    color: var(--header-color);
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+/* Settings Controls */
+.settings-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--main-container-border);
+}
+
+.settings-btn {
+    background-color: var(--main-container-border);
+    color: var(--button-text-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+.settings-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+.settings-btn:active {
+    transform: translateY(0);
+}
+
+.timezone-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.settings-select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-color);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.settings-select:focus {
+    outline: none;
+    border-color: var(--main-container-border);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+
+/* --- Digital Clock Section --- */
+.clock-container {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.time {
+    font-size: 5em;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+    color: var(--clock-time-color);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.date {
+    font-size: 1.8em;
+    font-weight: 400;
+    color: var(--clock-date-color);
+    transition: color 0.3s ease;
+}
+
+.day {
+    font-size: 1.5em;
+    font-weight: 400;
+    color: var(--clock-day-color);
+    transition: color 0.3s ease;
+}
+
+/* --- Stopwatch Section --- */
+.stopwatch-container {
+    background-color: var(--stopwatch-bg);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--stopwatch-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stopwatch-display {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 4.5em;
+    font-weight: 700;
+    color: var(--stopwatch-display-color);
+    letter-spacing: 4px;
+    text-shadow: 0 0 12px rgba(220, 53, 69, 0.6);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.stopwatch-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Common Button Styles */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    min-width: 100px;
+    color: var(--button-text-color);
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn.start { background-color: var(--btn-start-bg); }
+.btn.start:hover:not(:disabled) { background-color: #218838; }
+
+.btn.pause { background-color: var(--btn-pause-bg); }
+.btn.pause:hover:not(:disabled) { background-color: #e0a800; }
+
+.btn.reset { background-color: var(--btn-reset-bg); }
+.btn.reset:hover:not(:disabled) { background-color: #c82333; }
+
+.btn.lap { background-color: var(--btn-lap-bg); }
+.btn.lap:hover:not(:disabled) { background-color: #138496; }
+
+
+/* Lap Times List */
+.lap-times-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--lap-item-border);
+    border-radius: 8px;
+    background-color: var(--lap-item-bg);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.lap-times-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--lap-item-border);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95em;
+    color: var(--input-color);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.lap-times-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- Countdown Timer Section --- */
+.countdown-container {
+    background-color: var(--countdown-bg);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--stopwatch-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.countdown-input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--input-color);
+    transition: color 0.3s ease;
+}
+
+.countdown-input-group input[type="number"] {
+    width: 60px;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-color);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.countdown-input-group input[type="number"]::-webkit-outer-spin-button,
+.countdown-input-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.countdown-input-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--main-container-border);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.countdown-display {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 4.5em;
+    font-weight: 700;
+    color: var(--countdown-display-color); /* Green color for countdown */
+    letter-spacing: 4px;
+    text-shadow: 0 0 12px rgba(40, 167, 69, 0.6);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.countdown-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+
+/* --- Alarm Section --- */
+.alarm-section {
+    padding-top: 30px;
+    border-top: 1px solid var(--main-container-border);
+}
+
+.alarm-container {
+    background-color: var(--alarm-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--stopwatch-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.alarm-input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--input-color);
+    transition: color 0.3s ease;
+}
+
+.alarm-input-group input[type="number"] {
+    width: 60px;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-color);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.alarm-input-group input[type="number"]::-webkit-outer-spin-button,
+.alarm-input-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.alarm-input-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--main-container-border);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.btn.alarm-set { background-color: var(--btn-alarm-set-bg); }
+.btn.alarm-set:hover:not(:disabled) { background-color: #5a34a2; }
+
+.btn.alarm-clear { background-color: var(--btn-alarm-clear-bg); }
+.btn.alarm-clear:hover:not(:disabled) { background-color: #5a6268; }
+
+.current-alarm-display {
+    font-size: 1.1em;
+    color: var(--input-color);
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 20px;
+        gap: 30px;
+    }
+    h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    .time, .stopwatch-display, .countdown-display {
+        font-size: 3.5em;
+        letter-spacing: 2px;
+    }
+    .date {
+        font-size: 1.2em;
+    }
+    .day {
+        font-size: 1em;
+    }
+    .settings-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .timezone-select-wrapper {
+        flex-direction: column;
+    }
+    .settings-btn, .settings-select,
+    .btn, .alarm-input-group input,
+    .countdown-input-group input {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    .stopwatch-controls, .countdown-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .alarm-input-group, .countdown-input-group {
+        font-size: 1.5em;
+    }
+    .alarm-input-group input[type="number"],
+    .countdown-input-group input[type="number"] {
+        width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 15px;
+        margin: 15px;
+    }
+    .time, .stopwatch-display, .countdown-display {
+        font-size: 2.5em;
+    }
+    .alarm-input-group, .countdown-input-group {
+        font-size: 1.2em;
+    }
+    .alarm-input-group input[type="number"],
+    .countdown-input-group input[type="number"] {
+        width: 45px;
+        padding: 8px;
+    }
+}

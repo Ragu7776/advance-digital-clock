@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Digital Clock & Stopwatch & Countdown</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode"> <div class="main-container">
+        <div class="settings-controls">
+            <button id="toggleThemeBtn" class="btn settings-btn">🌙 Dark Mode</button>
+            <button id="toggleTimeFormatBtn" class="btn settings-btn">24-Hr Format</button>
+            <div class="timezone-select-wrapper">
+                <label for="timezoneSelect">Time Zone:</label>
+                <select id="timezoneSelect" class="settings-select"></select>
+            </div>
+        </div>
+
+        <div class="clock-section">
+            <h2>Digital Clock</h2>
+            <div class="clock-container">
+                <div id="dateDisplay" class="date"></div>
+                <div id="timeDisplay" class="time"></div>
+                <div id="dayDisplay" class="day"></div>
+            </div>
+        </div>
+
+        <div class="stopwatch-section">
+            <h2>Stopwatch</h2>
+            <div class="stopwatch-container">
+                <div id="stopwatchDisplay" class="stopwatch-display">00:00:00.000</div>
+                <div class="stopwatch-controls">
+                    <button id="startStopwatchBtn" class="btn start">Start</button>
+                    <button id="pauseStopwatchBtn" class="btn pause" disabled>Pause</button>
+                    <button id="resetStopwatchBtn" class="btn reset" disabled>Reset</button>
+                    <button id="lapStopwatchBtn" class="btn lap" disabled>Lap</button>
+                </div>
+                <ul id="lapTimesList" class="lap-times-list">
+                    </ul>
+            </div>
+        </div>
+
+        <div class="countdown-section">
+            <h2>Countdown Timer</h2>
+            <div class="countdown-container">
+                <div class="countdown-input-group">
+                    <input type="number" id="countdownHour" min="0" placeholder="HH"> :
+                    <input type="number" id="countdownMinute" min="0" max="59" placeholder="MM"> :
+                    <input type="number" id="countdownSecond" min="0" max="59" placeholder="SS">
+                </div>
+                <div id="countdownDisplay" class="countdown-display">00:00:00</div>
+                <div class="countdown-controls">
+                    <button id="startCountdownBtn" class="btn start">Start</button>
+                    <button id="pauseCountdownBtn" class="btn pause" disabled>Pause</button>
+                    <button id="resetCountdownBtn" class="btn reset" disabled>Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="alarm-section">
+            <h2>Alarm Clock</h2>
+            <div class="alarm-container">
+                <div class="alarm-input-group">
+                    <input type="number" id="alarmHour" min="0" max="23" placeholder="HH"> :
+                    <input type="number" id="alarmMinute" min="0" max="59" placeholder="MM">
+                </div>
+                <button id="setAlarmBtn" class="btn alarm-set">Set Alarm</button>
+                <button id="clearAlarmBtn" class="btn alarm-clear" disabled>Clear Alarm</button>
+                <div id="currentAlarmDisplay" class="current-alarm-display">No alarm set</div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="alarmSound" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-alarm-995.mp3" preload="auto"></audio>
+    <audio id="buttonClickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-fast-sweep-transition-1685.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
